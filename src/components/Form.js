@@ -6,20 +6,20 @@ let obj = { firstName: "", lastName: "", mobileNumber: "", emailID: "" };
 const Form = () => {
   const [formValues, setFormValues] = useState(obj);
   const [data, setData] = useState([]);
-  const [edited, setEdited] = useState(false);
+  let edited = false;
   const [btnName, setBtnName] = useState("submit");
   const [editId, setEditId] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
   const [deletion, setDeletion] = useState(false);
-  let randomId = Math.floor(Math.random() * 100);
   useEffect(() => {
     if (deletion) {
+      // eslint-disable-next-line array-callback-return
       let updateRecordAfterDelete = data.filter((item, index) => {
         if (index !== deleteId) return item;
       });
       setData(updateRecordAfterDelete);
     }
-  }, [deleteId, deletion]);
+  }, [data, deleteId, deletion]);
   let newDATA = [];
   const handleSubmit = (e, item, index) => {
     e.preventDefault();
@@ -134,7 +134,11 @@ const Form = () => {
           </div>
         </div>
         <div className="form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="exampleCheck1"
+          />
           <label className="form-check-label" for="exampleCheck1">
             Check me out
           </label>
