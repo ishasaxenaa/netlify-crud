@@ -19,7 +19,8 @@ const Form = () => {
       });
       setData(updateRecordAfterDelete);
     }
-  }, [data, deleteId, deletion]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deleteId, deletion]);
   let newDATA = [];
   const handleSubmit = (e, item, index) => {
     e.preventDefault();
